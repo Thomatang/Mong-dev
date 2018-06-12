@@ -23,17 +23,15 @@ passport.use(new GoogleStrategy({
   callbackURL: "/auth/google/callback",
   proxy: true
 },
-(accessToken, refreshToken, profile, done) => {
-  User.findOne({googleID: profile.id})
-    .then((existingUser) => {
+async (accessToken, refreshToken, profile, done) => {
+  const existingUser = await User.findOne({googleID: profile.id})
       if(existingUser) {
         done(null, existingUser);
       } else {
-        new User ({googleID: profile.id, name: profile.name.familyName})
+        const user = await new User ({googleID: profile.id, name: profile.name.familyName})
           .save()
-          .then(user => done(null, user));
+          done(null, user);
       }
-    })
   }
 )
 );
@@ -44,17 +42,15 @@ passport.use(new FacebookStrategy({
   callbackURL: "/auth/facebook/callback",
   proxy: true
 },
-(accessToken, refreshToken, profile, done) => {
-  User.findOne({facebookID:profile.id})
-    .then((existingUser) => {
+async (accessToken, refreshToken, profile, done) => {
+  const existingUser = await User.findOne({facebookID:profile.id})
       if(existingUser) {
         done(null, existingUser);
       }else {
-        new User({facebookID: profile.id,name: profile.displayName})
+        const user = await new User({facebookID: profile.id,name: profile.displayName})
           .save()
-          .then(user => done(null, user));
+          done(null, user);
       }
-    })
 
     // console.log('access Token', accessToken);
     // console.log('refresh Token', refreshToken);
