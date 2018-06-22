@@ -4,6 +4,8 @@ const cookieSession = require('cookie-session'); // get access to cookies
 const passport = require('passport'); // tell passport to make use of cookies
 const keys = require('./config/keys');
 require('./models/User');
+require('./models/Restaurant');
+require('./models/City');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
@@ -20,6 +22,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app);
+require('./routes/restaurantRoutes')(app);
 
 //HEROKU Deployment configuration
 if(process.env.NODE_ENV === 'production'){ // environment variable setup by heroku
