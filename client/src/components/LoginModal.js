@@ -1,5 +1,9 @@
 import React , { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
+
+import { Link } from 'react-router-dom';
 
 class LoginModal extends Component {
   constructor(props, context) {
@@ -19,23 +23,52 @@ class LoginModal extends Component {
     this.setState({show:false})
   };
 
+  renderContent() {
+    switch (this.props.auth) {
+      case null: // browser still processing, does not know yet if user is logged in
+        return;
+      case false:
+        return (
+          <li key="1" onClick={this.handleShow}>
+            <Navbar.Text>
+                Login
+            </Navbar.Text>
+          </li>
+        );
+      default:
+        return [
+            <li key="2">
+            <Navbar.Text>
+                <Navbar.Link href="/api/logout">Logout</Navbar.Link>
+            </Navbar.Text>
+
+            </li>
+      ];
+    }
+  }
+
+
   render() {
+    console.log(this.props);
+
     return (
-      <div >
-        <div onClick={this.handleShow}>
-          Login
+      <div>
+        <div>
+          <ul>{this.renderContent()}</ul>
         </div>
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header>
             <Modal.Title>Login</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>
-              Login with Google
-            </p>
-            <p>
-              Login with Facebook
-            </p>
+          <ul>
+              <li>
+                  <a href="/auth/google">Login with Google</a>
+              </li>
+              <li>
+                  <a href="/auth/facebook">Login with Facebook</a>
+              </li>
+          </ul>
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.handleClose}>Close</Button>
@@ -46,4 +79,10 @@ class LoginModal extends Component {
   }
 }
 
-export default LoginModal;
+function mapStateToProps(state){
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(LoginModal);

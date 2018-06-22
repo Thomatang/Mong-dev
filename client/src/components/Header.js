@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Nav, Navbar, NavItem, NavDropdown,MenuItem, Collapse, Toggle } from 'react-bootstrap';
 import LoginModal from './LoginModal';
+import { connect } from 'react-redux';
+import { LinkContainer } from 'react-router-bootstrap';
 
 class Header extends Component {
 
   render() {
-
     return (
       <div>
             <Navbar className="container" inverse>
                 <Navbar.Header>
                   <Navbar.Brand>
-                    <a href="#brand">Mong</a>
+                    <LinkContainer to={this.props.auth ? '/dashboard' : '/'}>
+                        <div>Mong</div>
+                    </LinkContainer>
                   </Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
                   <Nav pullRight>
-                    <NavItem>
                       <LoginModal/>
-                    </NavItem>
                   </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -28,4 +30,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+function mapStateToProps(state){
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(Header);

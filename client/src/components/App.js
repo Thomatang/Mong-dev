@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
-
+import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 import Header from './Header';
+import Landing from './Landing';
 const Dashboard = () => <h2>Dashboard</h2>;
 const MongNew = () => <h2>Mong New</h2>;
-const Landing = () => <h2>Landing</h2>;
+
 
 class App extends Component {
+
+  componentDidMount(){
+    this.props.fetchUser();
+  }
+
   render(){
     return (
       <div>
@@ -15,7 +22,7 @@ class App extends Component {
               <div className="container">
                   <Header />
                   <Route exact path="/" component={Landing}/>
-                  <Route exact path="/restaurants" component={Dashboard}/>
+                  <Route exact path="/dashboard" component={Dashboard}/>
                   <Route exact path="/new_Mong" component={MongNew} />
               </div>
           </BrowserRouter>
@@ -24,4 +31,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, actions)(App);

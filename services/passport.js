@@ -52,8 +52,5 @@ async (accessToken, refreshToken, profile, done) => {
           done(null, user);
       }
 
-    // console.log('access Token', accessToken);
-    // console.log('refresh Token', refreshToken);
-    // console.log('profile', profile);
   })
 );
