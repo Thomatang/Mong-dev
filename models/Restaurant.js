@@ -4,7 +4,7 @@ const MenuItemSchema = require('./MenuItem');
 
 const restaurantSchema = new Schema({
   name: String,
-  _city: {Schema.Types.ObjectId, ref:'City'}, // each restaurant belongs to one city
+  _city: {type: Schema.Types.ObjectId, ref:'City'}, // each restaurant belongs to one city
   country: String,
   address: String,
   rating: { type: Number, min: 0, max: 10 },
@@ -13,4 +13,4 @@ const restaurantSchema = new Schema({
 
 })
 
-mongoose.model('restaurants', restaurantSchema)
+mongoose.model('restaurants', restaurantSchema);

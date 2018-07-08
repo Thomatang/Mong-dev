@@ -1,9 +1,8 @@
 import React , { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 
-import { Link } from 'react-router-dom';
 
 class LoginModal extends Component {
   constructor(props, context) {
@@ -49,7 +48,7 @@ class LoginModal extends Component {
 
 
   render() {
-    console.log(this.props);
+    //console.log(this.props);
 
     return (
       <div>

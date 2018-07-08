@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Nav, Navbar, NavItem, NavDropdown,MenuItem, Collapse, Toggle } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import LoginModal from './LoginModal';
 import { connect } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
