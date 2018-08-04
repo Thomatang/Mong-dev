@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^3.3.7",
+    "lodash": "^4.17.10",
     "materialize-css": "^1.0.0-rc.1",
     "mdbreact": "^4.4.0",
     "react": "^16.4.0",

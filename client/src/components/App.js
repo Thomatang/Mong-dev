@@ -19,11 +19,13 @@ class App extends Component {
     return (
       <div>
           <BrowserRouter>
-              <div className="container">
+              <div>
                   <Header />
-                  <Route exact path="/" component={Landing}/>
-                  <Route exact path="/dashboard" component={Dashboard}/>
-                  <Route exact path="/restaurants/new" component={RestaurantNew} />
+                  <div className="container">
+                      <Route exact path="/" component={Landing}/>
+                      <Route exact path="/dashboard" component={Dashboard}/>
+                      <Route exact path="/restaurants/new" component={RestaurantNew} />
+                  </div>
               </div>
           </BrowserRouter>
       </div>

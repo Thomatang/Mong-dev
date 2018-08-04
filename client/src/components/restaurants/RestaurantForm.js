@@ -1,33 +1,61 @@
 // shows a Form for a user to add input
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { Button, FormGroup } from 'react-bootstrap';
 import RestaurantFormField from './RestaurantFormField';
+import { Link } from 'react-router-dom';
+
+const FIELDS = [
+  { label: 'Restaurant Name', name: 'restaurant', noValueError:'Please enter the restaurant name here'},
+  {label: 'Address', name: 'address', noValueError:'Please enter the address here'},
+  {label: 'City', name: 'city', noValueError:'Please enter the city here'},
+  {label: 'Vegan Options', name: 'vegan options', noValueError:'Please enter vegan options separated by a comma'},
+
+];
 
 class RestaurantForm extends Component {
 
-  renderFields(){
-    return(
-      <div>
-        <Field label="Restaurant Name" type="text" name="Restaurant Name" component={RestaurantFormField}/>
-        <Field label="Address" type="text" name="Restaurant Address" component={RestaurantFormField}/>
-        <Field label="City" type="text" name="Restaurant City" component={RestaurantFormField}/>
-        <Field label="Vegan Options" type="text" name="Vegan Options" component={RestaurantFormField}/>
-      </div>
-    );
+  renderFields() {
+    return _.map(FIELDS, ({ label,name }) => {
+      return <Field key={name} component={RestaurantFormField} type="text" label={label} name={name}/>
+    });
   }
 
   render(){
     return(
-      <div>
-        <form onSubmit={this.props.handleSubmit(values => console.log(values))}>
+      <div className="restaurant_form">
+        <form className="restaurant_form" onSubmit={this.props.handleSubmit(values => console.log(values))}>
           {this.renderFields()}
-          <button type="submit">Submit</button>
+          <FormGroup className="form_button_container">
+              <Link to="/dashboard">
+              <Button>Cancel</Button>
+              </Link>
+              <Button type="submit">Submit</Button>
+          </FormGroup>
         </form>
       </div>
     );
   }
 }
 
+//redux-form validate function
+function validate(values) {
+  const errors = {};
+
+  
+  //forEach loop: for each field in the FIELDS, run arrow function
+  _.each(FIELDS, ({name, noValueError})=> {
+    if(!values[name]){
+        errors[name] = noValueError;
+    }
+});
+
+  return errors;
+}
+
 export default reduxForm({
-  form: 'restaurantForm'
+  validate,
+  form: 'restaurantForm',
+  destroyOnUnmount: false
 })(RestaurantForm);

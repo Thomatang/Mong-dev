@@ -1,7 +1,6 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "engines": {
     "node": "8.1.1",
@@ -30,5 +29,14 @@
     "passport-google-oauth20": "^1.0.0",
     "redux-thunk": "^2.3.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thomatang/Mong-dev.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Thomatang/Mong-dev/issues"
+  },
+  "homepage": "https://github.com/Thomatang/Mong-dev#readme",
+  "description": ""
 }

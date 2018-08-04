@@ -10,12 +10,12 @@ const Dashboard = () => {
           <Row className="show-grid">
             <Col xs={6} xsOffset={5}>
                 <ButtonToolbar>
-                  <Button bsStyle="danger" bsSize="large">
                           <Link to="/restaurants/new">
-                            <Glyphicon glyph="plus">
-                            </Glyphicon>
+                              <Button bsSize="large">
+                                  <Glyphicon glyph="plus">
+                                  </Glyphicon>
+                              </Button>
                           </Link>
-                  </Button>
                 </ButtonToolbar>
             </Col>
           </Row>

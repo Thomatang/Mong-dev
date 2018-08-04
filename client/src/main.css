@@ -11,3 +11,26 @@
 .loginmodal a:visited{
   text-decoration: none;
 }*/
+
+/* .restaurant_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.restaurant_form label {
+  width: 50%;
+}
+
+.restaurant_form input {
+  width: 50%;
+} */
+
+.form_button_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.red-text {
+  color: red;
+}
