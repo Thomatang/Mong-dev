@@ -25,7 +25,7 @@ class RestaurantForm extends Component {
   render(){
     return(
       <div className="restaurant_form">
-        <form className="restaurant_form" onSubmit={this.props.handleSubmit(values => console.log(values))}>
+        <form className="restaurant_form" onSubmit={this.props.handleSubmit( this.props.onSurveySubmit)}>
           {this.renderFields()}
           <FormGroup className="form_button_container">
               <Link to="/dashboard">
