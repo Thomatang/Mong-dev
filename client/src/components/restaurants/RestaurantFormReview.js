@@ -7,7 +7,7 @@ import {withRouter} from 'react-router-dom';
 
 import * as actions from '../../actions/index';
 
-const RestaurantFormReview = (onCancel, formValues, submitSurvey, history) => {
+const RestaurantFormReview = ({onCancel, formValues, submitSurvey, history}) => {
 
     const reviewFields = _.map(formFields, ({name,label}) => {
         return (
@@ -27,8 +27,7 @@ const RestaurantFormReview = (onCancel, formValues, submitSurvey, history) => {
             <button onClick={onCancel}>Back</button>
             <button 
                 onClick={()=> submitSurvey(formValues, history)}>
-                <i>email</i>
-                Send Survey
+                Add Restaurant Mong
             </button>
         </div>
     )
@@ -39,7 +38,7 @@ const RestaurantFormReview = (onCancel, formValues, submitSurvey, history) => {
 function mapStateToProps(state){
 
     return {
-        formValues: state.form.RestaurantForm.values
+        formValues: state.form.restaurantForm.values
     };
 }
 

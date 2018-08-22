@@ -16,10 +16,11 @@ class RestaurantNew extends Component {
     //helper function to toggle visibility between two components
     renderContent(){
         if(this.state.showFormReview) {
-            return 
+            return (
               <RestaurantFormReview 
-              onCancel={ () => {this.setState({showFormReview: false})}}
+              onCancel={ () => this.setState({showFormReview: false})}
               />
+            );
         }
         return (
           <RestaurantForm 
